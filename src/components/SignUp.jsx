@@ -10,22 +10,28 @@ const navigate=useNavigate();
     e.preventDefault();
 
     // Send the data
-    fetch("https://userauth-cult.onrender.com/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email, password }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Signup successful:", data);
-        navigate("/home");
+fetch("https://userauth-cult.onrender.com/signup", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ name, email, password }),
+})
+  .then(async (res) => {
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`Server responded with ${res.status}: ${errorText}`);
+    }
+    return res.json();
+  })
+  .then((data) => {
+    console.log("Signup successful:", data);
+    navigate("/home");
+  })
+  .catch((error) => {
+    console.error("Error during signup:", error.message);
+  });
 
-      })
-      .catch((error) => {
-        console.error("Error during signup:", error);
-      });
   }
 
   return (
