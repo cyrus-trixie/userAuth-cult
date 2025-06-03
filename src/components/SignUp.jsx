@@ -10,7 +10,7 @@ const navigate=useNavigate();
     e.preventDefault();
 
     // Send the data
-    fetch("http://localhost:5000/signup", {
+    fetch("https://userauth-cult.onrender.com/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
