@@ -17,7 +17,7 @@ const scaryWordsList = [
   "They’re outside your window.",
   "Don’t turn around.",
   "Your name is whispered in the dark.",
-  "Something’s waiting for you."
+  "Something’s waiting for you...."
 ];
 
 
