@@ -2,6 +2,8 @@ import express from 'express';
 import mysql from 'mysql2';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import dotenv from 'dotenv';
+
 
 
 const app = express();
@@ -10,15 +12,16 @@ const PORT = 5000;
 // Middleware to parse JSON request body
 app.use(bodyParser.json());
 app.use(cors());
-
+dotenv.config();
 
 // Create the database connection
+
 const con = mysql.createConnection({
-  host: 'mysql-18cf372e-djmoviestore.l.aivencloud.com',
-  user: 'avnadmin',
-  password: 'AVNS_iIvBqi8lVGLqxky47yf',
-  database: 'userAuthentication',
-  port: 14342
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: Number(process.env.DB_PORT),
 });
 
 // Connect to the database
